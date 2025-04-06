@@ -1,5 +1,7 @@
 FROM node:18
 
+ARG DEFAULT_PORT=80
+
 WORKDIR /app
 
 COPY package.json package.json
@@ -8,6 +10,8 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 80
+ENV PORT $DEFAULT_PORT
+
+EXPOSE $PORT
 
 CMD [ "node", "server.js" ]
